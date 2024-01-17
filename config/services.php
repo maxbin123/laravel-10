@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'alpha_vantage' => [
+        'base_url' => env('ALPHA_VANTAGE_BASE_URL', 'https://www.alphavantage.co/query'),
+        'api_key' => env('ALPHA_VANTAGE_API_KEY'),
+    ],
+
 ];
