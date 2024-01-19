@@ -6,6 +6,7 @@ use App\Jobs\FetchStockDataJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class FetchStockDataJobTest extends TestCase
