@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class AlphaVantageService
 {
@@ -29,7 +30,7 @@ class AlphaVantageService
 
         $stockPrices = [];
 
-        if ($response->successful()) {
+        if ($response->successful() && isset($response[self::TIME_KEY])) {
             foreach ($response[self::TIME_KEY] as $dateTime => $values) {
                 $stockPrices[] = [
                     'symbol' => $symbol,
@@ -37,9 +38,10 @@ class AlphaVantageService
                     'price' => $values['4. close']
                 ];
             }
+        } else {
+            Log::error('Alpha Vantage API error', ['response' => $response->body()]);
+            return null;
         }
-
-        // TODO: Error handling
 
         return $stockPrices;
     }

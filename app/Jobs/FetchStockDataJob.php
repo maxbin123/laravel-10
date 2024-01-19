@@ -25,6 +25,8 @@ class FetchStockDataJob implements ShouldQueue
     {
         $stockPrices = $alphaVantageService->fetchStockData($this->symbol);
 
-        StockPrice::upsert($stockPrices, ['symbol', 'date_time'], ['price']);
+        if ($stockPrices) {
+            StockPrice::upsert($stockPrices, ['symbol', 'date_time'], ['price']);
+        }
     }
 }
